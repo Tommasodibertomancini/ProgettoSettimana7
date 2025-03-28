@@ -10,9 +10,7 @@ namespace ProgettoSettimana7.Models
         public int Ticketid { get; set; }
 
         [Required]
-        public DateTime DateBought { get; set; }
-
-        public int ArtistId { get; set; }
+        public DateTime PurchaseDate { get; set; }
 
         public int EventId { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProgettoSettimana7.DTOs.Artist;
 using ProgettoSettimana7.DTOs.Event;
@@ -9,6 +10,7 @@ namespace ProgettoSettimana7.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ArtistController : ControllerBase
     {
         private readonly ArtistService _artistService;
@@ -19,6 +21,7 @@ namespace ProgettoSettimana7.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateArtist([FromBody] CreateArtistRequestDto newArtist)
         {
             try
@@ -134,6 +137,7 @@ namespace ProgettoSettimana7.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditArtist(
             [FromQuery] string artistId,
             [FromBody] EditArtistRequestDto editArtist
@@ -154,6 +158,7 @@ namespace ProgettoSettimana7.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _artistService.DeleteArtistByIdAsync(id);

@@ -5,6 +5,7 @@ using ProgettoSettimana7.DTOs.Event;
 using ProgettoSettimana7.DTOs.Artist;
 using ProgettoSettimana7.Models;
 using ProgettoSettimana7.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProgettoSettimana7.Controllers
 {
@@ -20,6 +21,7 @@ namespace ProgettoSettimana7.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateEventRequestDto createEvent)
         {
             try
@@ -120,6 +122,7 @@ namespace ProgettoSettimana7.Controllers
         }
 
         [HttpPut("{eventId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditEvent(
             string eventId,
             [FromBody] EditEventRequestDto editEvent
@@ -140,6 +143,7 @@ namespace ProgettoSettimana7.Controllers
         }
 
         [HttpDelete("{eventId:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int eventId)
         {
             var result = await _eventService.DeleteEventByIdAsync(eventId);
