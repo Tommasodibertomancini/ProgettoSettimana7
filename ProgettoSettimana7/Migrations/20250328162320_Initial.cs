@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProgettoSettimana7.Migrations
 {
     /// <inheritdoc />
-    public partial class Inizio : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -204,8 +204,7 @@ namespace ProgettoSettimana7.Migrations
                 {
                     Ticketid = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateBought = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ArtistId = table.Column<int>(type: "int", nullable: false),
+                    PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EventId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -240,9 +239,9 @@ namespace ProgettoSettimana7.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "766609fc-a1bd-4ca8-bc3b-8167dd9ba0f2", 0, "e967c67d-3ffa-401b-8c51-51abf0bea22b", "sandra.diberto@mail.com", false, "Sandra", "Di Berto", false, null, "SANDRA.DIBERTO@MAIL.COM", "SANDRA.DIBERTO@MAIL.COM", "AQAAAAIAAYagAAAAEO+lm/3EWXuT6zSmVkOuXFvMIcAn/LRckKCPlHZKN22Alm/OTWTpk6oH1F3Jh7P4yQ==", "9876543210", false, "07e88215-50cc-4344-ab17-9cda06122c6a", false, "sandra.diberto@mail.com" },
-                    { "c78b6d05-e718-4564-b3d2-f6905c6a469b", 0, "5b62ac39-42fa-4d94-a39f-7c184090cc7d", "tommaso.mancini@mail.com", false, "Tommaso", "Mancini", false, null, "TOMMASO.MANCINI@MAIL.COM", "TOMMASO.MANCINI@MAIL.COM", "AQAAAAIAAYagAAAAEP4/6WxQ3M9gftzXujnPJK3V+5e6HUclFcmr35MahbA3rRR2k+Qe2XINMYhRWOhD6A==", "1234567890", false, "39914683-23ba-44ad-8909-78ecb2ac053c", false, "tommaso.mancini@mail.com" },
-                    { "e2af1de3-d002-4e20-bdb2-63188bbea7d9", 0, "fe1c99f5-be6e-4bd2-a5de-95a3ee2dde31", "admin@mail.com", false, "Admin", "Admin", false, null, "ADMIN@MAIL.COM", "ADMIN@MAIL.COM", "AQAAAAIAAYagAAAAEExcq7x3RhWBDQjtOrJT3QDKUMxGdWfHt8yspkXASF7Z10PFvcGGV2BR3+ekJcMnkg==", "1231231230", false, "69e95dcd-c037-42f9-849a-bdd8a59ca2b3", false, "admin@mail.com" }
+                    { "3c209b02-7b38-42c1-a05e-28570930b7bc", 0, "5c6d7598-e407-49b1-b59f-fdbf35040f4c", "sandra.diberto@mail.com", false, "Sandra", "Di Berto", false, null, "SANDRA.DIBERTO@MAIL.COM", "SANDRA.DIBERTO@MAIL.COM", "AQAAAAIAAYagAAAAEO+lm/3EWXuT6zSmVkOuXFvMIcAn/LRckKCPlHZKN22Alm/OTWTpk6oH1F3Jh7P4yQ==", "9876543210", false, "c1be906b-6467-4472-8dae-de1026b006f7", false, "sandra.diberto@mail.com" },
+                    { "c78b6d05-e718-4564-b3d2-f6905c6a469b", 0, "8c7ce0df-7d2d-48c1-8faf-de82e0f95406", "tommaso.mancini@mail.com", false, "Tommaso", "Mancini", false, null, "TOMMASO.MANCINI@MAIL.COM", "TOMMASO.MANCINI@MAIL.COM", "AQAAAAIAAYagAAAAEP4/6WxQ3M9gftzXujnPJK3V+5e6HUclFcmr35MahbA3rRR2k+Qe2XINMYhRWOhD6A==", "1234567890", false, "3e3c512a-f59a-439c-bd92-906eafeca945", false, "tommaso.mancini@mail.com" },
+                    { "e2af1de3-d002-4e20-bdb2-63188bbea7d9", 0, "5a846e5f-cada-474e-90fc-c5e360fbfee4", "admin@mail.com", false, "Admin", "Admin", false, null, "ADMIN@MAIL.COM", "ADMIN@MAIL.COM", "AQAAAAIAAYagAAAAEExcq7x3RhWBDQjtOrJT3QDKUMxGdWfHt8yspkXASF7Z10PFvcGGV2BR3+ekJcMnkg==", "1231231230", false, "52750559-976d-40cd-a934-4bfd11d366b0", false, "admin@mail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -250,7 +249,7 @@ namespace ProgettoSettimana7.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "4a3ecee1-bb71-4931-a484-6597abe37190", "766609fc-a1bd-4ca8-bc3b-8167dd9ba0f2" },
+                    { "4a3ecee1-bb71-4931-a484-6597abe37190", "3c209b02-7b38-42c1-a05e-28570930b7bc" },
                     { "4a3ecee1-bb71-4931-a484-6597abe37190", "c78b6d05-e718-4564-b3d2-f6905c6a469b" },
                     { "feeaad97-2197-4d4f-9c59-2b5cdbe6aafb", "e2af1de3-d002-4e20-bdb2-63188bbea7d9" }
                 });

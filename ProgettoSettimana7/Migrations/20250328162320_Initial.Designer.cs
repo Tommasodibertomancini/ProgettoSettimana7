@@ -12,8 +12,8 @@ using ProgettoSettimana7.Data;
 namespace ProgettoSettimana7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250328110600_Inizio")]
-    partial class Inizio
+    [Migration("20250328162320_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,7 +262,7 @@ namespace ProgettoSettimana7.Migrations
                         {
                             Id = "e2af1de3-d002-4e20-bdb2-63188bbea7d9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fe1c99f5-be6e-4bd2-a5de-95a3ee2dde31",
+                            ConcurrencyStamp = "5a846e5f-cada-474e-90fc-c5e360fbfee4",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -273,7 +273,7 @@ namespace ProgettoSettimana7.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEExcq7x3RhWBDQjtOrJT3QDKUMxGdWfHt8yspkXASF7Z10PFvcGGV2BR3+ekJcMnkg==",
                             PhoneNumber = "1231231230",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "69e95dcd-c037-42f9-849a-bdd8a59ca2b3",
+                            SecurityStamp = "52750559-976d-40cd-a934-4bfd11d366b0",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         },
@@ -281,7 +281,7 @@ namespace ProgettoSettimana7.Migrations
                         {
                             Id = "c78b6d05-e718-4564-b3d2-f6905c6a469b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5b62ac39-42fa-4d94-a39f-7c184090cc7d",
+                            ConcurrencyStamp = "8c7ce0df-7d2d-48c1-8faf-de82e0f95406",
                             Email = "tommaso.mancini@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Tommaso",
@@ -292,15 +292,15 @@ namespace ProgettoSettimana7.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP4/6WxQ3M9gftzXujnPJK3V+5e6HUclFcmr35MahbA3rRR2k+Qe2XINMYhRWOhD6A==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "39914683-23ba-44ad-8909-78ecb2ac053c",
+                            SecurityStamp = "3e3c512a-f59a-439c-bd92-906eafeca945",
                             TwoFactorEnabled = false,
                             UserName = "tommaso.mancini@mail.com"
                         },
                         new
                         {
-                            Id = "766609fc-a1bd-4ca8-bc3b-8167dd9ba0f2",
+                            Id = "3c209b02-7b38-42c1-a05e-28570930b7bc",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e967c67d-3ffa-401b-8c51-51abf0bea22b",
+                            ConcurrencyStamp = "5c6d7598-e407-49b1-b59f-fdbf35040f4c",
                             Email = "sandra.diberto@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Sandra",
@@ -311,7 +311,7 @@ namespace ProgettoSettimana7.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEO+lm/3EWXuT6zSmVkOuXFvMIcAn/LRckKCPlHZKN22Alm/OTWTpk6oH1F3Jh7P4yQ==",
                             PhoneNumber = "9876543210",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "07e88215-50cc-4344-ab17-9cda06122c6a",
+                            SecurityStamp = "c1be906b-6467-4472-8dae-de1026b006f7",
                             TwoFactorEnabled = false,
                             UserName = "sandra.diberto@mail.com"
                         });
@@ -344,7 +344,7 @@ namespace ProgettoSettimana7.Migrations
                         },
                         new
                         {
-                            UserId = "766609fc-a1bd-4ca8-bc3b-8167dd9ba0f2",
+                            UserId = "3c209b02-7b38-42c1-a05e-28570930b7bc",
                             RoleId = "4a3ecee1-bb71-4931-a484-6597abe37190"
                         });
                 });
@@ -386,14 +386,11 @@ namespace ProgettoSettimana7.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Ticketid"));
 
-                    b.Property<int>("ArtistId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateBought")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("EventId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .IsRequired()
