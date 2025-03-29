@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ProgettoSettimana7.DTOs.Ticket;
 using ProgettoSettimana7.Models;
@@ -12,6 +13,7 @@ namespace ProgettoSettimana7.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TicketController : ControllerBase
     {
         private readonly TicketService _ticketService;
@@ -92,13 +94,11 @@ namespace ProgettoSettimana7.Controllers
                     })
                     .ToList();
 
-                return Ok(
-                    new AllTickets()
-                    {
-                        Message = "Tickets found!",
-                        Tickets = ticketsList,
-                    }
-                );
+                var count = ticketsList.Count;
+
+                var message = count == 1 ? $"{count} ticket found!" : $"{count} tickets found!";
+
+                return Ok(new AllTickets() { Message = message, Tickets = ticketsList });
             }
             catch (Exception ex)
             {
@@ -145,6 +145,66 @@ namespace ProgettoSettimana7.Controllers
 
                 return Ok(
                     new GetTicketResponse() { Message = "Ticket found!", Ticket = ticketFound }
+                );
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("GetYourTickets")]
+        [Authorize]
+        public async Task<IActionResult> GetYourTickets()
+        {
+            try
+            {
+                var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                var userId = user.Value;
+
+                var ticketsList = await _ticketService.GetAllMyTicketsAsync(userId);
+
+                if (ticketsList == null)
+                {
+                    return BadRequest(
+                        new AllTickets()
+                        {
+                            Message = "Something went wrong!",
+                            Tickets = null,
+                        }
+                    );
+                }
+
+                List<TicketDto> myTicketsList = ticketsList
+                    .Select(t => new TicketDto()
+                    {
+                        Ticketid = t.Ticketid,
+                        EventId = t.EventId,
+                        PurchaseDate = t.DateBought,
+                        UserId = t.UserId,
+                        Event = new BaseEventDto()
+                        {
+                            Eventid = t.Event.Eventid,
+                            Title = t.Event.Title,
+                            Place = t.Event.Place,
+                            Date = t.Event.Date,
+                        },
+                        ApplicationUser = new ApplicationUserDto()
+                        {
+                            Id = t.ApplicationUser.Id,
+                            FirstName = t.ApplicationUser.FirstName,
+                            LastName = t.ApplicationUser.LastName,
+                            Email = t.ApplicationUser.Email,
+                        },
+                    })
+                    .ToList();
+
+                var count = myTicketsList.Count;
+
+                var message = count == 1 ? $"{count} ticket found!" : $"{count} tickets found!";
+
+                return Ok(
+                    new AllTickets() { Message = message, Tickets = myTicketsList }
                 );
             }
             catch (Exception ex)

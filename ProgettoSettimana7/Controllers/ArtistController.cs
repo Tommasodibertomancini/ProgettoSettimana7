@@ -80,13 +80,11 @@ namespace ProgettoSettimana7.Controllers
                     })
                     .ToList();
 
-                return Ok(
-                    new AllArtist()
-                    {
-                        Message = "Artists found!",
-                        Artists = artistsList,
-                    }
-                );
+                var count = artistsList.Count;
+
+                var message = count == 1 ? $"{count} artist found!" : $"{count} artists found!";
+
+                return Ok(new AllArtist() { Message = message, Artists = artistsList });
             }
             catch (Exception ex)
             {

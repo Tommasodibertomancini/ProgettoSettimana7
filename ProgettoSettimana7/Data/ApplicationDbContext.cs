@@ -66,7 +66,7 @@ namespace ProgettoSettimana7.Data
                     {
                         Id = "4a3ecee1-bb71-4931-a484-6597abe37190",
                         Name = "User",
-                        NormalizedName = "User",
+                        NormalizedName = "USER",
                     }
                 );
 

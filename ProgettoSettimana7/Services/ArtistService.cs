@@ -39,6 +39,7 @@ namespace ProgettoSettimana7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }
@@ -52,6 +53,7 @@ namespace ProgettoSettimana7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return null;
             }
         }
@@ -69,6 +71,7 @@ namespace ProgettoSettimana7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return null;
             }
         }
@@ -96,6 +99,7 @@ namespace ProgettoSettimana7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }
@@ -117,6 +121,7 @@ namespace ProgettoSettimana7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }

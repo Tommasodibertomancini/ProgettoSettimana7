@@ -77,9 +77,11 @@ namespace ProgettoSettimana7.Controllers
                 })
                 .ToList();
 
-            return Ok(
-                new AllEvent() { Message = "Events found!", Events = eventsList }
-            );
+            var count = eventsList.Count;
+
+            var message = count == 1 ? $"{count} event found!" : $"{count} events found!";
+
+            return Ok(new AllEvent() { Message = message, Events = eventsList });
         }
 
         [HttpGet("{eventId}")]
