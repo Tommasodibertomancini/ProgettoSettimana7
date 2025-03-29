@@ -180,7 +180,7 @@ namespace ProgettoSettimana7.Controllers
                     {
                         Ticketid = t.Ticketid,
                         EventId = t.EventId,
-                        PurchaseDate = t.DateBought,
+                        PurchaseDate = t.PurchaseDate,
                         UserId = t.UserId,
                         Event = new BaseEventDto()
                         {
